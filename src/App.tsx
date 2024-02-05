@@ -7,7 +7,7 @@ import { collection, addDoc } from "firebase/firestore";
 function App() {
   const [count, setCount] = useState(0);
 
-  const addTodo = async (e) => {
+  const addTodo = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     try {
         const docRef = await addDoc(collection(db, "form-id"), {
