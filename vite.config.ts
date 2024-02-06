@@ -11,7 +11,7 @@ export default defineConfig({
         globPatterns: ["**/*"],
         runtimeCaching: [{
           handler: 'NetworkOnly',
-          urlPattern: /\/api\/.*\/*.json/,
+          urlPattern: /^https:\/\/firestore\.googleapis\.com\/google\.firestore\.v1\.Firestore\/Write\/channel/,
           method: 'POST',
           options: {
             backgroundSync: {
