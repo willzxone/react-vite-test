@@ -7,12 +7,12 @@ import { collection, addDoc } from "firebase/firestore";
 function App() {
   const [count, setCount] = useState(0);
 
-  const addTodo = async (e: { preventDefault: () => void; }) => {
+  const addTodo = async (e: { preventDefault: () => void; }, count: number) => {
     e.preventDefault();
     try {
-        const docRef = await addDoc(collection(db, "form-id"), {
-          email: "willzxone@gmail.com",
-          name: "Willz",    
+        const docRef = await addDoc(collection(db, "form"), {
+          name: "willzxone",
+          count: count,    
         });
         console.log("Document written with ID: ", docRef.id);
       } catch (e) {
@@ -31,7 +31,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={addTodo}>
+        <button onClick={(e) => {addTodo(e, count),setCount(count+1) }}>
           count is {count}
         </button>
         <h3>
