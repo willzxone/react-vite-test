@@ -1,6 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from "vite-plugin-pwa";
+import basicSsl from '@vitejs/plugin-basic-ssl'
+import fs from 'fs'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,19 +12,19 @@ export default defineConfig({
     VitePWA({
       workbox: {
         globPatterns: ["**/*"],
-        runtimeCaching: [{
-          handler: 'NetworkOnly',
-          urlPattern: /^https:\/\/firestore\.googleapis\.com\/google\.firestore\.v1\.Firestore\/Write\/channel/,
-          method: 'POST',
-          options: {
-            backgroundSync: {
-              name: 'myQueueName',
-              options: {
-                maxRetentionTime: 24 * 60
-              }
-            }
-          }
-        }]
+        // runtimeCaching: [{
+        //   handler: 'NetworkOnly',
+        //   urlPattern: /^https:\/\/firestore\.googleapis\.com\/google\.firestore\.v1\.Firestore\/Write\/channel/,
+        //   method: 'POST',
+        //   options: {
+        //     backgroundSync: {
+        //       name: 'myQueueName',
+        //       options: {
+        //         maxRetentionTime: 24 * 60
+        //       }
+        //     }
+        //   }
+        // }]
       },
       includeAssets: [
         "**/*",
