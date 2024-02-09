@@ -9,6 +9,7 @@ function App() {
 
   const addTodo = async (e: { preventDefault: () => void; }, count: number) => {
     e.preventDefault();
+    console.log("adding todo")
     try {
         const docRef = await addDoc(collection(db, "form"), {
           name: "willzxone",
