@@ -18,11 +18,11 @@ export default defineConfig({
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/firestore\.googleapis\.com/,
-            handler: 'NetworkOnly',
+            handler: 'NetworkFirst',
             method: 'POST',
             options: {
               backgroundSync: {
-                name: 'firestore-queue',
+                name: 'myQueueName',
                 options: {
                   maxRetentionTime: 24 * 60, // Retry for max of 24 hours
                 },
