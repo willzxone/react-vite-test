@@ -9,19 +9,22 @@ export default defineConfig({
     VitePWA({
       workbox: {
         globPatterns: ["**/*"],
-        runtimeCaching: [{
-          handler: 'NetworkOnly',
-          urlPattern: /^https:\/\/firestore\.googleapis\.com\/google\.firestore\.v1\.Firestore\/Write\/channel/,
-          method: 'POST',
-          options: {
-            backgroundSync: {
-              name: 'myQueueName',
-              options: {
-                maxRetentionTime: 24 * 60
-              }
-            }
-          }
-        }]
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/firestore\.googleapis\.com\/google\.firestore\.v1\.Firestore\/Write\/channel/,
+            method: 'POST',
+            handler: 'NetworkFirst',
+            options: {
+              backgroundSync: {
+                name: 'myQueueName',
+                options: {
+                  maxRetentionTime: 24 * 60, // Retry for max of 24 hours
+                },
+              },
+              networkTimeoutSeconds: 10, // fall back to cache if network does not respond within 10s
+            },
+          },
+        ],
       },
       includeAssets: [
         "**/*",
