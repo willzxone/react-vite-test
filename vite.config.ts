@@ -21,7 +21,7 @@ export default defineConfig({
                   maxRetentionTime: 24 * 60, // Retry for max of 24 hours
                 },
               },
-              networkTimeoutSeconds: 10, // fall back to cache if network does not respond within 10s
+              networkTimeoutSeconds: 2, // fall back to cache if network does not respond within 10s
             },
           },
         ],
