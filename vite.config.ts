@@ -8,23 +8,31 @@ export default defineConfig({
     react(),
     VitePWA({
       workbox: {
-        globPatterns: ["**/*"],
+        additionalManifestEntries: [
+          { url: '/index.html', revision: '1234567890' },
+          // other entries...
+        ],
+        globDirectory: 'dist',
+        globPatterns: ['**/*.{html,js,css}'],
+        globIgnores: ['**/node_modules/**/*', 'sw.js', 'workbox-*.js'],
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/firestore\.googleapis\.com\/google\.firestore\.v1\.Firestore\/Write\/channel/,
+            urlPattern: /^https:\/\/firestore\.googleapis\.com/,
+            handler: 'NetworkOnly',
             method: 'POST',
-            handler: 'NetworkFirst',
             options: {
               backgroundSync: {
-                name: 'myQueueName',
+                name: 'firestore-queue',
                 options: {
                   maxRetentionTime: 24 * 60, // Retry for max of 24 hours
                 },
               },
-              networkTimeoutSeconds: 2, // fall back to cache if network does not respond within 10s
             },
           },
         ],
+      },
+      devOptions:{
+        enabled: true
       },
       includeAssets: [
         "**/*",
