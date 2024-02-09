@@ -16,6 +16,7 @@ function App() {
           count: count,    
         });
         console.log("Document written with ID: ", docRef.id);
+        setCount(count+1)
       } catch (e) {
         console.error("Error adding document: ", e);
       }
@@ -32,7 +33,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={(e) => {addTodo(e, count),setCount(count+1) }}>
+        <button onClick={(e) => {addTodo(e, count) }}>
           count is {count}
         </button>
         <h3>
