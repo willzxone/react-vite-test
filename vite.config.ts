@@ -15,7 +15,7 @@ export default defineConfig({
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/firestore\.googleapis\.com/,
-            handler: 'NetworkFirst',
+            handler: 'NetworkOnly',
             method: 'POST',
             options: {
               backgroundSync: {
@@ -28,9 +28,9 @@ export default defineConfig({
           },
         ],
       },
-      devOptions:{
-        enabled: true
-      },
+      // devOptions:{
+      //   enabled: true
+      // },
       includeAssets: [
         "**/*",
       ],

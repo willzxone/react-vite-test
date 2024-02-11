@@ -67,13 +67,10 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-394cbc8d'], (function (workbox) { 'use strict';
+define(['./workbox-6fde3c71'], (function (workbox) { 'use strict';
 
-  self.addEventListener('message', event => {
-    if (event.data && event.data.type === 'SKIP_WAITING') {
-      self.skipWaiting();
-    }
-  });
+  self.skipWaiting();
+  workbox.clientsClaim();
 
   /**
    * The precacheAndRoute() method efficiently caches and responds to
@@ -88,7 +85,7 @@ define(['./workbox-394cbc8d'], (function (workbox) { 'use strict';
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
     allowlist: [/^\/$/]
   }));
-  workbox.registerRoute(/^https:\/\/firestore\.googleapis\.com/, new workbox.NetworkFirst({
+  workbox.registerRoute(/^https:\/\/firestore\.googleapis\.com/, new workbox.NetworkOnly({
     plugins: [new workbox.BackgroundSyncPlugin("myQueueName", {
       maxRetentionTime: 1440
     })]
