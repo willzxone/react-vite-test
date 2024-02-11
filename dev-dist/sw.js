@@ -67,7 +67,7 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-6688baa7'], (function (workbox) { 'use strict';
+define(['./workbox-394cbc8d'], (function (workbox) { 'use strict';
 
   self.addEventListener('message', event => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
@@ -88,8 +88,8 @@ define(['./workbox-6688baa7'], (function (workbox) { 'use strict';
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
     allowlist: [/^\/$/]
   }));
-  workbox.registerRoute(/^https:\/\/firestore\.googleapis\.com/, new workbox.NetworkOnly({
-    plugins: [new workbox.BackgroundSyncPlugin("firestore-queue", {
+  workbox.registerRoute(/^https:\/\/firestore\.googleapis\.com/, new workbox.NetworkFirst({
+    plugins: [new workbox.BackgroundSyncPlugin("myQueueName", {
       maxRetentionTime: 1440
     })]
   }), 'POST');

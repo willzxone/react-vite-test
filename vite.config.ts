@@ -7,11 +7,8 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      registerType: 'autoUpdate',
       workbox: {
-        additionalManifestEntries: [
-          { url: '/index.html', revision: '1234567890' },
-          // other entries...
-        ],
         globDirectory: 'dist',
         globPatterns: ['**/*.{html,js,css}'],
         globIgnores: ['**/node_modules/**/*', 'sw.js', 'workbox-*.js'],
