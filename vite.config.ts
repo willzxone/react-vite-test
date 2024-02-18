@@ -9,8 +9,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globDirectory: 'dist',
-        globPatterns: ['**/*.{html,js,css}'],
+        globDirectory: 'dist', // Make sure this directory exists and contains your files
+        globPatterns: ['**/*.{html,js,css}'], // Make sure these file types exist in the globDirectory
         globIgnores: ['**/node_modules/**/*', 'sw.js', 'workbox-*.js'],
         runtimeCaching: [
           {
