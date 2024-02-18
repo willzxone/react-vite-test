@@ -67,7 +67,7 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-6fde3c71'], (function (workbox) { 'use strict';
+define(['./workbox-93af6629'], (function (workbox) { 'use strict';
 
   self.skipWaiting();
   workbox.clientsClaim();
@@ -85,7 +85,7 @@ define(['./workbox-6fde3c71'], (function (workbox) { 'use strict';
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
     allowlist: [/^\/$/]
   }));
-  workbox.registerRoute(/^https:\/\/firestore\.googleapis\.com/, new workbox.NetworkOnly({
+  workbox.registerRoute(/^https:\/\/firestore\.googleapis\.com/, new workbox.StaleWhileRevalidate({
     plugins: [new workbox.BackgroundSyncPlugin("myQueueName", {
       maxRetentionTime: 1440
     })]
