@@ -16,6 +16,7 @@ export default defineConfig({
           {
             urlPattern: /^https:\/\/firestore\.googleapis\.com/,
             handler: 'StaleWhileRevalidate',
+            method: 'GET',
             options: {
               backgroundSync: {
                 name: 'myQueueName',
